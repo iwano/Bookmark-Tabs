@@ -6,7 +6,10 @@ JustMeAndMyGuitar::Application.routes.draw do
   get "bookmarks/new"
 
   get "groups/new"
-
+  resources :sessions, only: [:new, :create, :destroy]
+  match '/signup',  to: 'users#new'
+  match '/signin',  to: 'sessions#new'
+  match '/signout', to: 'sessions#destroy', via: :delete
   resources :users
 
   root to: 'static_pages#home'
