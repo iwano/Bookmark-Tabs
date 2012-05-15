@@ -1,4 +1,20 @@
 JustMeAndMyGuitar::Application.routes.draw do
+  get "relationships/new"
+
+  get "sites/new"
+
+  get "bookmarks/new"
+
+  get "groups/new"
+
+  resources :users
+
+  root to: 'static_pages#home'
+  match '/help',    to: 'static_pages#help'
+  get "static_pages/home"
+  get "static_pages/help"
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
