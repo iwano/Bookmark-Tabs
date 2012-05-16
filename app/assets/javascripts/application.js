@@ -14,3 +14,14 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
+
+$(document).ready(function() {
+	$('#myModal').modal({
+  keyboard: false
+})
+
+	$('div.modal-backdrop  in').click(function(e){
+    	e.preventDefault();
+	});
+	
+});

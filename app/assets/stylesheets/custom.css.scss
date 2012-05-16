@@ -12,6 +12,7 @@ html {
 
 body {
   padding-top: 60px;
+  background:#332627;
 }
 
 section {
@@ -112,4 +113,32 @@ footer {
 .field_with_errors {
   @extend .control-group;
   @extend .error;
+ }
+
+ label.fieldInline{
+  display:inline;
+ }
+
+ label.emailLogin{
+  margin-right:26px;
+ }
+
+ a.center{
+  margin:auto;
+ }
+
+ div#logInModal{
+  width:315px;
+  margin:auto;
+  border: 1px solid #999;
+  padding-left: 15px;
+  padding-top: 15px;
+  -webkit-border-radius:7px;
+  -moz-border-radius:7px;
+  border-radius:15px;
+  background:white;
+ }
+
+ div#logInBackground{
+  background:black;
  }

@@ -1,7 +1,18 @@
-<% provide(:title, 'Home') %>
-<h1>Sample App</h1>
-<p>
-  This is the home page for the
-  <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-  sample application.
-</p>
+<% if signed_in? %>
+<%else%>
+  <div id="logInModal"%>
+    <%= form_for(:session, url: "/sessions/loginnew") do |f| %>
+    
+        <%= f.label :email, class: "fieldInline emailLogin" %>
+        <%= f.email_field :email, placeholder: "e.g. email@example.com", required: true %>
+        
+        <%= f.label :password, class: "fieldInline"%>
+        <%= f.password_field :password, placeholder: "e.g. ********", required: true %><br />
+
+        <%= f.submit "Sign in", class: "btn btn-large btn-inverse center" %>
+
+    <% end %>
+  </div>
+<%end%>
+
+    
