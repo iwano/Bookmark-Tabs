@@ -25,9 +25,20 @@ $(function(){
     // to do something useful!
     $('section#navigationFrame').width(1040 - width);
   });
-  
-  // Update all info divs immediately.
-  $('section#bookmarksList').resize();
-  
+
+  $('nav ul li a').mouseenter(function(e){
+  	$(this).tooltip('show')
+  });
+  $('nav ul li a').mouseleave(function(e){
+  	$(this).tooltip('hide')
+  });
+
+  //$('section#navigationFrame').css({'width': (($(window).width()) - 240)+'px'});
+    
+    //$(window).bind('resize', function(){    	
+      //$('section#navigationFrame') .css({'width': (($(window).width()) - 240)+'px'});
+    //});
   
 });
+
+

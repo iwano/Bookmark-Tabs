@@ -150,12 +150,7 @@ div.container{
  }
 
  section#bookmarksList{
-  margin-top:5px;
-  background:$grayMediumLight;
-  height:auto;
-  min-width:6%;
-  float:left;
-  resize:horizontal;
+  max-width:512px;
  }
 
  section#navigationFrame{
@@ -165,6 +160,7 @@ div.container{
   width:81.3%;
   float:right;
   position:fieldInline;
+  clear:right;
  }
 
  div.main{
@@ -182,4 +178,19 @@ div.container{
  iframe#frame{
   width:99%;
   height:98%;
+ }
+
+ div#xxx{
+  margin-top:5px;
+  background:$grayMediumLight;
+  height:auto;
+  min-width:6%;
+  max-width:40%;
+  float:left;
+  resize:both;
+  height:512px;
+ }
+
+ section#bookmarksGroups{
+  resize:none;
  }

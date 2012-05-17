@@ -1,18 +1,25 @@
 <% provide(:title, 'My Bookmark Tabs') %>
 <%= render 'layouts/header' %>
+<div id="xxx">
 <section id="bookmarksList">
-	<%= form_for(:bookmark, url: "/bookmarks/create") do |f| %>
-       <%= f.text_field :query, placeholder: "search", class: "search-query" %>
-    <%end%>
+	  <%= form_for(:bookmark, url: "/bookmarks/create") do |f| %>
+         <%= f.text_field :query, placeholder: "search", class: "search-query" %>
+      <%end%>
 	
-	<ul>
-      	<li><a href="http://www.w3schools.com" target="iframe">W3Schools.com</a></li>
-     	<li><a href="http://www.google.com" target="iframe">Google</a></li>
-      	<li><a href="http://www.youtube.com" target="iframe">Youtube.com</a></li>
-      	<li><a href="http://www.facebook.com" target="iframe">Facebook.com</a></li>
-      	<li><a href="http://www.applesfera.com" target="iframe">Applesfera.com</a></li>
-  	  </ul>
+	  <ul>
+      	  <li><a href="http://www.w3schools.com" target="iframe">W3Schools.com</a></li>
+     	  <li><a href="http://www.google.com" target="iframe">Google</a></li>
+      	  <li><a href="http://www.youtube.com" target="iframe">Youtube.com</a></li>
+      	  <li><a href="http://www.facebook.com" target="iframe">Facebook.com</a></li>
+  	    </ul>
 </section>
+<section id="bookmarksGroups">
+  	<p>Groups</p>
+  	  <%= form_for(:bookmark, url: "/bookmarks/create") do |f| %>
+         <%= f.text_field :query, placeholder: "search", class: "search-query" %>
+      <%end%>
+  	</section>
+ </div>
 <section id="navigationFrame">
 	<iframe src="" name="iframe" id="frame"></iframe>
 <section>

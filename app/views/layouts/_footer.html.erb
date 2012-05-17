@@ -1,17 +1,21 @@
 <header class="navbar navbar-fixed-bottom" id="headerNavBar">
   <div class="navbar-inner">
     <div class="container">
-      <h1 class="left" id="logo"><%= @user.email %>'s Tabs</h1>
+      <% if signed_in? %>
+        <h1 class="left" id="logo"><%= @user.email %>'s Tabs</h1>
+      <%else%>
+        <h1 class="left" id="logo">My Bookmark Tabs</h1>
+      <%end%>
       <nav>
         <ul class="nav pull-right">
           <li>
-            <a href= '/help'  title="Help">
+            <a href= '/help' rel="tooltip" title="help">
             <i class="icon-question-sign icon-white"></i>
             </a>
           </li>
           <% if signed_in? %>
               <li>
-                <%= link_to raw('<i class="icon-off icon-white"></i>'), signout_path, method: "delete" %>
+                <%= link_to raw('<i class="icon-off icon-white"></i>'), signout_path, rel: "tooltip", title:"log out", method: "delete" %>
               </li>
           <% end %>
         </ul>
