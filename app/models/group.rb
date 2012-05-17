@@ -14,5 +14,5 @@ class Group < ActiveRecord::Base
 
   belongs_to :user
   has_many :relationships
-  has many :bookmarks, :through :relationships
+  has many :bookmarks, :through => :relationships
 end

@@ -17,5 +17,5 @@ class Bookmark < ActiveRecord::Base
   belongs_to :user
   belongs_to :site
   has_many :relationships
-  has many :groups, :through :relationships
+  has many :groups, :through => :relationships
 end
