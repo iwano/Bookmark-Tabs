@@ -37,7 +37,7 @@ $(function(){
     
     //$(window).bind('resize', function(){    	
       //$('section#navigationFrame') .css({'width': (($(window).width()) - 240)+'px'});
-    //});
+    //);
   
 });
 
