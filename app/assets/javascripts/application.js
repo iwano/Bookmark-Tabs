@@ -15,13 +15,19 @@
 //= require bootstrap
 //= require_tree .
 
-$(document).ready(function() {
-	$('#myModal').modal({
-  keyboard: false
-})
+$(function(){
+  // Bind the resize event. When any test element's size changes, update its
+  // corresponding info div.
+  $('section#bookmarksList').resize(function(){
+    var width = $(this).width() - 238;
 
-	$('div.modal-backdrop  in').click(function(e){
-    	e.preventDefault();
-	});
-	
+    // Update the info div width and height - replace this with your own code
+    // to do something useful!
+    $('section#navigationFrame').width(1040 - width);
+  });
+  
+  // Update all info divs immediately.
+  $('section#bookmarksList').resize();
+  
+  
 });

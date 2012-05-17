@@ -1,16 +1,13 @@
 <% if signed_in? %>
+
 <%else%>
   <div id="logInModal"%>
     <%= form_for(:session, url: "/sessions/loginnew") do |f| %>
-    
-        <%= f.label :email, class: "fieldInline emailLogin" %>
-        <%= f.email_field :email, placeholder: "e.g. email@example.com", required: true %>
+        <%= f.email_field :email, placeholder: "email", required: true %>
         
-        <%= f.label :password, class: "fieldInline"%>
-        <%= f.password_field :password, placeholder: "e.g. ********", required: true %><br />
+        <%= f.password_field :password, placeholder: "password", required: true %><br />
 
-        <%= f.submit "Sign in", class: "btn btn-large btn-inverse center" %>
-
+        <%= f.submit "Lets Rock", class: "btn btn-large btn-inverse center", id: "logInSubmit" %>
     <% end %>
   </div>
 <%end%>

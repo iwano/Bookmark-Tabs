@@ -1,13 +1,21 @@
-<footer class="footer">
-  <small>
-    <a href="http://railstutorial.org/">Rails Tutorial</a>
-    by Michael Hartl
-  </small>
-  <nav>
-    <ul>
-      <li><%= link_to "About",   "#" %></li>
-      <li><%= link_to "Contact", "#" %></li>
-      <li><a href="http://news.railstutorial.org/">News</a></li>
-    </ul>
-  </nav>
-</footer>
+<header class="navbar navbar-fixed-bottom" id="headerNavBar">
+  <div class="navbar-inner">
+    <div class="container">
+      <h1 class="left" id="logo"><%= @user.email %>'s Tabs</h1>
+      <nav>
+        <ul class="nav pull-right">
+          <li>
+            <a href= '/help'  title="Help">
+            <i class="icon-question-sign icon-white"></i>
+            </a>
+          </li>
+          <% if signed_in? %>
+              <li>
+                <%= link_to raw('<i class="icon-off icon-white"></i>'), signout_path, method: "delete" %>
+              </li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
