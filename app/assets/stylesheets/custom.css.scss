@@ -114,6 +114,7 @@ div.container{
  div#logInModal{
   width:235px;
   margin:auto;
+  margin-top:9%;
   border: 1px solid #999;
   padding-left: 15px;
   padding-top: 15px;
@@ -150,22 +151,25 @@ div.container{
  }
 
  section#bookmarksList{
-  max-width:512px;
+  border: 3px solid white;
+  background:$grayLighter;
+  float:left;
+  position: absolute; top: 0; left: 0; right: 80%; bottom: 0;
+  overflow: hidden;
+  overflow-y: scroll;
  }
 
  section#navigationFrame{
-  margin-top:5px;
-  background:$grayMediumLight;
-  height:85%;
-  width:81.3%;
-  float:right;
-  position:fieldInline;
-  clear:right;
+  border: 3px solid white;
+  background:$blue;
+  float:left;
+  position: absolute; top: 0; left: 20%; right: 0; bottom: 0;
  }
 
  div.main{
   margin:0;
   width:auto;
+  position: absolute; top: 7.9%; left: 0; right: 0; bottom: 4.5%;
  }
 
  input.search-query{
@@ -176,21 +180,18 @@ div.container{
  }
 
  iframe#frame{
-  width:99%;
-  height:98%;
+  width:99.7%;
+  height:99.7%;
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
  }
 
- div#xxx{
-  margin-top:5px;
-  background:$grayMediumLight;
-  height:auto;
-  min-width:6%;
-  max-width:40%;
-  float:left;
-  resize:both;
-  height:512px;
- }
-
- section#bookmarksGroups{
-  resize:none;
- }
+ section#bookmarksList a{
+  color: rgba(0, 136, 204, .6);
+  font-weight:bold;
+  font-size:15px;
+  &:hover { 
+    color: $grayLight;
+    text-decoration:none;
+    color: rgba(0, 136, 204, 1);
+  }
+}

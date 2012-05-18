@@ -1,7 +1,7 @@
 <header class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">  
-      <%= form_for(:bookmark, url: "/bookmarks/create") do |f| %>
+      <%= form_for(:bookmark, url: "/bookmarks") do |f| %>
         <%= f.text_field :url, placeholder: "url", required: true, id:"addBookmarkField" %>
         <%= f.submit "+ add", class: "btn btn-large btn-warning removeFormat" %>
       <%end%>

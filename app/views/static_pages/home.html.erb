@@ -1,6 +1,3 @@
-<% if signed_in? %>
-
-<%else%>
   <div id="logInModal"%>
     <%= form_for(:session, url: "/sessions/loginnew") do |f| %>
         <%= f.email_field :email, placeholder: "email", required: true %>
@@ -10,6 +7,5 @@
         <%= f.submit "Lets Rock", class: "btn btn-large btn-inverse center", id: "logInSubmit" %>
     <% end %>
   </div>
-<%end%>
 
     

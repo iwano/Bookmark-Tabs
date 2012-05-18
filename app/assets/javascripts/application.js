@@ -33,11 +33,16 @@ $(function(){
   	$(this).tooltip('hide')
   });
 
-  //$('section#navigationFrame').css({'width': (($(window).width()) - 240)+'px'});
-    
-    //$(window).bind('resize', function(){    	
-      //$('section#navigationFrame') .css({'width': (($(window).width()) - 240)+'px'});
-    //);
+  
+  $('div#xxx')
+   .resizable({
+     resize: function(e, ui) {
+   }
+  });
+
+   $("a#helpButton").click(function(e){
+    $('#myModal').modal('show');
+   });
   
 });
 

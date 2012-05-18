@@ -1,10 +1,8 @@
 JustMeAndMyGuitar::Application.routes.draw do
+  match '/mybookmarks',    to: 'static_pages#mybookmarks'
   get "static_pages/mybookmarks"
   post "sessions/loginnew"
-  get "relationships/new"
-  get "sites/new"
-  get "bookmarks/new"
-  get "groups/new"
+  resources :bookmarks, only: [:create]
   resources :sessions, only: [:new, :create, :destroy]
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
