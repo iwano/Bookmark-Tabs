@@ -12,7 +12,7 @@
 #
 
 class Bookmark < ActiveRecord::Base
-  attr_accessible :url, :name, :description, :rating
+  attr_accessible :url, :name, :rating
 
   validates :url, :user_id, presence: true
 
