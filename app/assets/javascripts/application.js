@@ -34,7 +34,7 @@ $(function(){
   });
 
   
-  $('div#xxx')
+  $('section#bookmarksList')
    .resizable({
      resize: function(e, ui) {
    }
