@@ -26,24 +26,22 @@ $(function(){
     $('section#navigationFrame').width(1040 - width);
   });
 
-  $('nav ul li a').mouseenter(function(e){
+  $('nav ul li a#helpButton').mouseenter(function(e){
   	$(this).tooltip('show')
   });
-  $('nav ul li a').mouseleave(function(e){
+  $('nav ul li a#helpButton').mouseleave(function(e){
   	$(this).tooltip('hide')
   });
 
-  
-  $('section#bookmarksList')
-   .resizable({
-     resize: function(e, ui) {
-   }
-  });
-
-   $("a#helpButton").click(function(e){
-    $('#myModal').modal('show');
+   $("nav ul li a#helpButton").click(function(e){
+   $('#myModal').modal('show');
    });
-  
-});
 
+   var email = $("input#userEmail").val();
+   $("ul li a#logOutIcon").popover({placement:'top', content: email});
+
+   $('#mainSplitter').jqxSplitter({ width: '100%', height: '100%', panels: [{ size: '20%' }, { size: '80%'}] });
+   $('#rightSplitter').jqxSplitter({  height: '100%', orientation: 'horizontal', panels: [{ size: '80%', collapsible: false }, { size: '20%' }] });
+
+});
 

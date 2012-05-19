@@ -1,24 +1,28 @@
 <% provide(:title, 'My Bookmark Tabs') %>
-<%=render "layouts/header"%>
-<section id="bookmarksList">
+<div style="border: none;" id="mainSplitter">       
+  <div style="border: none;" id="rightSplitter">
+    <div id="bookmarksDiv">
+  <%= form_for(:bookmark, url: "/bookmarks/create") do |f| %>
+    <%= f.text_field :query, placeholder: "search", class: "search-query" %>
+  <%end%>
+
+  <table class="table-striped table"> 
+    <%@bookmarks.each do |bookmark|%>
+      <tr><td><%=link_to bookmark.url, bookmark.url, :target => "iframe"%></td></tr>
+    <%end%>
+  </table>
+    </div>
+    <div>
+       <p>Groups</p>
     <%= form_for(:bookmark, url: "/bookmarks/create") do |f| %>
-         <%= f.text_field :query, placeholder: "search", class: "search-query" %>
-      <%end%>
-  
-        <table class="table-striped table"> 
-          <%@bookmarks.each do |bookmark|%>
-            <tr><td><%=link_to bookmark.url, bookmark.url, :target => "iframe"%><td/></tr>
-          <%end%>
-        </table>
-        </ul>
-    <p>Groups</p>
-      <%= form_for(:bookmark, url: "/bookmarks/create") do |f| %>
-         <%= f.text_field :query, placeholder: "search", class: "search-query" %>
-      <%end%>
-  </section>
-<section id="navigationFrame">
-  <iframe src="" name="iframe" id="frame"></iframe>
-<section>
+      <%= f.text_field :query, placeholder: "search", class: "search-query" %>
+    <%end%>
+    </div>
+  </div>
+  <div>
+    <iframe src="" name="iframe" id="frame"></iframe>
+  </div>
+</div>
 
   <!--help modal -->
 <div class="modal hide fade" id="myModal">
