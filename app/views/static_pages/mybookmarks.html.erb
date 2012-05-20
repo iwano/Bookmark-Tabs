@@ -8,7 +8,10 @@
 
   <table class="table-striped table"> 
     <%@bookmarks.each do |bookmark|%>
-      <tr><td><%=link_to bookmark.url, bookmark.url, :target => "iframe"%></td></tr>
+      <tr id='bookmark_<%="#{bookmark.id}"%>'>
+        <td><%=link_to "x", bookmark_path(bookmark), class: "destroyBookmark"%></td>
+        <td><%=link_to bookmark.url, bookmark.url, :target => "iframe"%></td>
+      </tr>
     <%end%>
   </table>
     </div>
@@ -20,7 +23,7 @@
     </div>
   </div>
   <div>
-    <iframe src="" name="iframe" id="frame"></iframe>
+    <iframe src='<%="#{@randomPage}"%>' name="iframe" id="frame"></iframe>
   </div>
 </div>
 

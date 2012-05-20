@@ -14,8 +14,18 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
-
 $(function(){
+$('td a.destroyBookmark').click(function(e) {
+  e.preventDefault();
+    // we just need to add the key/value pair for the DELETE method
+    // as the second argument to the JQuery $.post() call
+      $.post(this.href, { _method: 'delete' }, null, "script");
+      $(this).closest("tr").fadeOut(600, function(){
+        $(this).closest("tr").remove();
+      });
+      return false; 
+  });
+
   // Bind the resize event. When any test element's size changes, update its
   // corresponding info div.
   $('section#bookmarksList').resize(function(){
@@ -37,7 +47,7 @@ $(function(){
    $('#myModal').modal('show');
    });
 
-   var email = $("input#userEmail").val();
+   var email = $("input#username").val();
    $("ul li a#logOutIcon").popover({placement:'top', content: email});
 
    $('#mainSplitter').jqxSplitter({ width: '100%', height: '100%', panels: [{ size: '20%' }, { size: '80%'}] });

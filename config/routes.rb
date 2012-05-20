@@ -2,17 +2,13 @@ JustMeAndMyGuitar::Application.routes.draw do
   match '/mybookmarks',    to: 'static_pages#mybookmarks'
   get "static_pages/mybookmarks"
   post "sessions/loginnew"
-  resources :bookmarks, only: [:create]
-  resources :sessions, only: [:new, :create, :destroy]
-  match '/signup',  to: 'users#new'
-  match '/signin',  to: 'sessions#new'
+  resources :bookmarks
+  resources :sessions, only: [:destroy]
   match '/signout', to: 'sessions#destroy', via: :delete
-  resources :users
+  resources :users, only: [:create]
 
   root to: 'static_pages#home'
-  match '/help',    to: 'static_pages#help'
   get "static_pages/home"
-  get "static_pages/help"
 
 
   # The priority is based upon order of creation:

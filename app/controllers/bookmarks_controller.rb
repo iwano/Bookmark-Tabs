@@ -6,4 +6,11 @@ class BookmarksController < ApplicationController
       redirect_to root_path
     end
  end
+
+ def destroy
+ 	Bookmark.find(params[:id]).destroy
+ 	respond_to do |format|  
+      format.js   { render :nothing => true }  
+    end
+ end
 end

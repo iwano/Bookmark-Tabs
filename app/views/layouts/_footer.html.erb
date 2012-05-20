@@ -7,7 +7,7 @@
           <%= f.submit "+ add", class: "btn btn-small btn-warning removeFormat" %>
         <%end%>
       
-        <%=hidden_field 'email', @user.email, id:"userEmail", value: @user.email%>
+        <%=hidden_field 'email', @username, id:"username", value: @username%>
       <%else%>
         <h1 class="left" id="logo">My Bookmark Tabs</h1>
       <%end%>
