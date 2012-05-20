@@ -2,7 +2,7 @@
   <div class="navbar-inner">
     <div class="container">
       <% if signed_in? %>
-        <%= form_for(:bookmark, url: "/bookmarks", :html => { :class => "formNoformat"}) do |f| %>
+        <%= form_for(:bookmark, url: "/bookmarks", remote: true, :html => { :class => "formNoformat"}) do |f| %>
           <%= f.text_field :url, placeholder: "url", required: true, id:"addBookmarkField" %>
           <%= f.submit "+ add", class: "btn btn-small btn-warning removeFormat" %>
         <%end%>

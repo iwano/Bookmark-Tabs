@@ -6,13 +6,8 @@
     <%= f.text_field :query, placeholder: "search", class: "search-query" %>
   <%end%>
 
-  <table class="table-striped table"> 
-    <%@bookmarks.each do |bookmark|%>
-      <tr id='bookmark_<%="#{bookmark.id}"%>'>
-        <td><%=link_to "x", bookmark_path(bookmark), class: "destroyBookmark"%></td>
-        <td><%=link_to bookmark.url, bookmark.url, :target => "iframe"%></td>
-      </tr>
-    <%end%>
+  <table class="table"> 
+      <%= render @bookmarks %>
   </table>
     </div>
     <div>

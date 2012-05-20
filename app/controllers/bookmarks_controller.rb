@@ -1,9 +1,9 @@
 class BookmarksController < ApplicationController
   def create
-   bookmark = current_user.bookmarks.build(params[:bookmark])
-    if bookmark.save
-      flash[:success] = "The product has been added to the database."
-      redirect_to root_path
+   @bookmark = current_user.bookmarks.build(params[:bookmark])
+   @bookmark.save
+    respond_to do |format|  
+      format.js 
     end
  end
 
@@ -12,5 +12,8 @@ class BookmarksController < ApplicationController
  	respond_to do |format|  
       format.js   { render :nothing => true }  
     end
+ end
+
+ def show
  end
 end

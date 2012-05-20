@@ -15,7 +15,7 @@
 //= require bootstrap
 //= require_tree .
 $(function(){
-$('td a.destroyBookmark').click(function(e) {
+$('td a.destroyBookmark').live('click', function(e) {
   e.preventDefault();
     // we just need to add the key/value pair for the DELETE method
     // as the second argument to the JQuery $.post() call

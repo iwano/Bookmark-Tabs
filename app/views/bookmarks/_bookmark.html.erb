@@ -1,0 +1,4 @@
+<tr id='bookmark_<%="#{bookmark.id}"%>'>
+    <td><%=link_to "x", bookmark_path(bookmark), class: "destroyBookmark"%></td>
+    <td><%=link_to bookmark.url, bookmark.url, :target => "iframe"%></td>
+</tr>
