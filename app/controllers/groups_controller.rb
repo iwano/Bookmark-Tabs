@@ -11,8 +11,17 @@ class GroupsController < ApplicationController
 
   def destroy
  	Group.find(params[:id]).destroy
- 	respond_to do |format|  
+   	respond_to do |format|  
       format.js   { render :nothing => true }  
     end
+ end
+
+ def showgroup
+  group = Group.find(params[:id])
+  @bookmarks = group.bookmarks
+  @id = group.id
+  respond_to do |format|  
+    format.js 
+  end
  end
 end

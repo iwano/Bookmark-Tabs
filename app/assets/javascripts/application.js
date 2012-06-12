@@ -82,14 +82,48 @@ $('li a.destroyBookmark').live('click', function(e) {
    });
 
    $("li.draggable").draggable({ 
-    
     opacity: 0.5,
     revert: true });
 
    $("li.droppable").droppable({
+      accept: '.draggable',
+      over: function(event, ui) {
+           $(this).addClass('droppableHover');
+      },
+      out: function(event, ui) {
+           $(this).removeClass('droppableHover');
+      },
       drop: function(event, ui){
         $(this).effect('highlight', {color:"#ff0000"}, 3000);
+        var group = $(this).attr('id');
+        var bookmark = ui.draggable.attr('id');
+        group = group.substr(6);
+        bookmark = bookmark.substr(9);
+        $.ajax({
+          type: 'GET',
+          url: '/bookmarks/drop',
+          data: {bookmark: bookmark, group: group}
+        });
       }
+   });
+
+   $('a.liGroup').click(function(){
+    var id = $(this).closest('li').attr('id');
+    if ($(this).children().hasClass('icon-folder-close')){
+      id = id.substr(6);
+      $.ajax({
+          type: 'GET',
+          url: '/groups/showgroup',
+          data: {id: id}
+      });
+      $(this).children().removeClass().addClass('icon-folder-open');
+    }
+    else {
+      id = id.substr(6);
+      container = 'ul#group-' + id;
+      $(container).remove();
+      $(this).children().removeClass().addClass('icon-folder-close');
+    }
    });
 });
 

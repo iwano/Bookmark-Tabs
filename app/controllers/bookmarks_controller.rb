@@ -15,6 +15,8 @@ class BookmarksController < ApplicationController
     end
  end
 
- def show
+ def drop
+ 	Bookmark.find(params[:bookmark]).update_attributes(group_id: params[:group])
+ 	render :nothing => true
  end
 end

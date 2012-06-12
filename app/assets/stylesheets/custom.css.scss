@@ -346,17 +346,17 @@ div.modal-body{
       font-size:28px;
       border: 1px solid #eee;
       padding-bottom:0;
-      padding-left:5px;
+      padding-left:3px;
       &:hover{
         background:#eee;
       }
       p {
-        margin:0 0 0 3px;
+        margin:0 0 0 5px;
         line-height:20px;
         color:#FF8619;
       }
       a.bookmarkName {
-        margin-right:5px;
+        margin-left:3px;
       }
       a.destroyBookmark {
         float:right;
@@ -366,4 +366,13 @@ div.modal-body{
     li.droppable{
       padding-bottom:7px;
     }
+  }
+
+  .droppableHover{
+    background:#AADCFC;
+  }
+
+  ul.groupList{
+    list-style: none;
+    margin-left:20px;
   }

@@ -2,9 +2,12 @@ JustMeAndMyGuitar::Application.routes.draw do
   match '/mybookmarks',    to: 'static_pages#mybookmarks'
   get "static_pages/mybookmarks"
   post "sessions/loginnew"
-  resources :bookmarks
+  resources :bookmarks do
+    get :drop, :on => :collection
+  end
   resources :sessions, only: [:destroy]
   resources :groups, only: [:create, :destroy]
+  get "groups/showgroup"
   match '/signout', to: 'sessions#destroy', via: :delete
   resources :users, only: [:create]
 

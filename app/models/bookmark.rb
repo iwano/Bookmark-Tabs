@@ -13,7 +13,7 @@
 #
 
 class Bookmark < ActiveRecord::Base
-  attr_accessible :url, :name, :rating
+  attr_accessible :url, :name, :rating, :group_id
 
   validates :url, :user_id, presence: true
   validates :rating, :numericality => {:greater_than => 0, :less_than => 6}
