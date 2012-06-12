@@ -1,4 +1,9 @@
-<tr id='bookmark_<%="#{bookmark.id}"%>'>
-    <td><%=link_to "x", bookmark_path(bookmark), class: "destroyBookmark"%></td>
-    <td><%=link_to bookmark.url, bookmark.url, :target => "iframe"%></td>
-</tr>
+<li id='bookmark_<%="#{bookmark.id}"%>' class='draggable'>
+    <%=link_to "x", bookmark_path(bookmark), class: "destroyBookmark"%>
+    <%if bookmark.name != nil%>
+    	<%=link_to bookmark.name, bookmark.url, :target => "iframe", class: "bookmarkName"%>
+    <%else%>
+    	<%=link_to bookmark.url, bookmark.url, :target => "iframe", class: "bookmarkName"%>
+    <%end%>
+    <p class='ratingLabel'><%= show_rating_stars(bookmark.rating)%></p>
+</li>

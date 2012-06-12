@@ -10,9 +10,8 @@
 #
 
 class Group < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :user_id
 
   belongs_to :user
-  has_many :relationships
-  has_many :bookmarks, :through => :relationships
+  has_many :bookmarks
 end

@@ -15,43 +15,81 @@
 //= require bootstrap
 //= require_tree .
 $(function(){
-$('td a.destroyBookmark').live('click', function(e) {
+$('li a.destroyBookmark').live('click', function(e) {
   e.preventDefault();
-    // we just need to add the key/value pair for the DELETE method
-    // as the second argument to the JQuery $.post() call
-      $.post(this.href, { _method: 'delete' }, null, "script");
-      $(this).closest("tr").fadeOut(600, function(){
-        $(this).closest("tr").remove();
-      });
-      return false; 
+  $.post(this.href, { _method: 'delete' }, null, "script");
+  $(this).closest("li").fadeOut(600, function(){
+  $(this).closest("li").remove();
   });
-
-  // Bind the resize event. When any test element's size changes, update its
-  // corresponding info div.
-  $('section#bookmarksList').resize(function(){
-    var width = $(this).width() - 238;
-
-    // Update the info div width and height - replace this with your own code
-    // to do something useful!
-    $('section#navigationFrame').width(1040 - width);
-  });
+  return false; 
+});
 
   $('nav ul li a#helpButton').mouseenter(function(e){
-  	$(this).tooltip('show')
+  	$(this).tooltip({'placement':'left'})
   });
-  $('nav ul li a#helpButton').mouseleave(function(e){
-  	$(this).tooltip('hide')
+  
+  $('a#newGroupButton').mouseenter(function(e){
+    $(this).tooltip({'placement':'bottom'})
   });
+
+  $("a#newGroupButton").click(function(e){
+    $.post("/groups", null, "script");
+   });
 
    $("nav ul li a#helpButton").click(function(e){
    $('#myModal').modal('show');
    });
 
+   $("#addBookmark").click(function(e){
+      e.preventDefault();
+      if ($('input#addBookmarkField').val() != ''){
+        $("input#addBookmarkFieldModal").val($('input#addBookmarkField').val());
+      } else $('input#addBookmarkFieldModal').val('');
+      $("input#nameModal").val('');
+      $('#addModal').modal('show');
+      $('li.current-rating').width('26');
+   });
+
    var email = $("input#username").val();
-   $("ul li a#logOutIcon").popover({placement:'top', content: email});
+   $("ul li a#logOutIcon").popover({placement:'bottom', content: email});
 
    $('#mainSplitter').jqxSplitter({ width: '100%', height: '100%', panels: [{ size: '20%' }, { size: '80%'}] });
-   $('#rightSplitter').jqxSplitter({  height: '100%', orientation: 'horizontal', panels: [{ size: '80%', collapsible: false }, { size: '20%' }] });
+   
 
+   $(".star-rating a.one-star").click(function(e){
+     $('li.current-rating').width('26');
+     $('input#ratingModal').val('1');
+   });
+
+   $(".star-rating a.two-stars").click(function(e){
+     $('li.current-rating').width('52');
+     $('input#ratingModal').val('2');
+   });
+
+   $(".star-rating a.three-stars").click(function(e){
+     $('li.current-rating').width('73');
+     $('input#ratingModal').val('3');
+   });
+
+   $(".star-rating a.four-stars").click(function(e){
+     $('li.current-rating').width('94');
+     $('input#ratingModal').val('4');
+   });
+
+   $(".star-rating a.five-stars").click(function(e){
+     $('li.current-rating').width('120');
+     $('input#ratingModal').val('5');
+   });
+
+   $("li.draggable").draggable({ 
+    
+    opacity: 0.5,
+    revert: true });
+
+   $("li.droppable").droppable({
+      drop: function(event, ui){
+        $(this).effect('highlight', {color:"#ff0000"}, 3000);
+      }
+   });
 });
 

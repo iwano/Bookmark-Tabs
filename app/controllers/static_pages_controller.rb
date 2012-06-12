@@ -5,6 +5,7 @@ class StaticPagesController < ApplicationController
   	noBookmarks= user.bookmarks.count
   	@username = user.email[0..user.email.index('@')-1]
   	@bookmarks = user.bookmarks
+    @groups = user.groups
   	@randomPage = @bookmarks[rand(noBookmarks) - 1].url unless noBookmarks == 0
   end
 

@@ -1,4 +1,18 @@
 class GroupsController < ApplicationController
-  def new
+  def create
+  	id = Group.count + 1
+  	name = "Group" + id.to_s
+  	@group = current_user.groups.build(name: name)
+   	@group.save
+  	respond_to do |format|  
+      format.js 
+    end
   end
+
+  def destroy
+ 	Group.find(params[:id]).destroy
+ 	respond_to do |format|  
+      format.js   { render :nothing => true }  
+    end
+ end
 end

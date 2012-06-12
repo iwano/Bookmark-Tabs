@@ -134,8 +134,10 @@ div.container{
  input#addBookmarkField{
   width:400px;
   height:15px;
-  margin-left:4px;
-  margin-top:5px;
+  margin:0 0 0 4px;
+ }
+ input#addBookmarkFieldModal{
+  width:440px;
  }
 
  input.removeFormat{
@@ -143,19 +145,15 @@ div.container{
   padding:5px;
  }
 
- h1.left{
-  float: left;
- }
-
  div.main{
   margin:0;
   width:auto;
-  position: absolute; top: 0; left: 0; right: 0; bottom: 5%;
+  position: absolute; top: 0; left: 0; right: 0; bottom: 4%;
  }
 
  input.search-query{
   margin:4px;
-  width:78%;
+  width:70%;
   height:12px;
   resize:none;
  }
@@ -192,14 +190,28 @@ form.formNoformat{
 
 nav{
   float:right;
-  margin-right:15px;
+  margin-right:130px;
+  margin-bottom:0;
 }
 
-nav ul li:hover{
-  background:black;
+nav ul{
+  list-style: none;
+  height:10px;
+}
+
+nav ul li{
+  float:left;
+  padding:8px 10px;
+  &:hover{
+    background:black;
+  };
 }
 
 div#bookmarksDiv{
+  overflow: hidden;
+}
+
+div#rightSplitter{
   overflow-y: scroll;
 }
 
@@ -215,3 +227,143 @@ div#rightSplitter a.destroyBookmark{
     color: #cc0000;
   }
 }
+
+form#addBookmarkForm{
+  margin-bottom:0;
+  height:34px;
+}
+
+div#header{
+  padding:0;
+}
+
+#logo{
+  margin:0 auto;
+  color:white;
+}
+
+div.modal-body{
+  height:120px;
+}
+
+.right{
+  float:right;
+}
+
+/******************** styles for the star rater *******************************/  
+  .star-rating{
+    list-style:none;
+    margin: 0px;
+    padding:0px;
+    width: 125px;
+    height: 25px;
+    position: relative;
+    overflow:hidden;
+    background: url(alt_star.gif) top left repeat-x;    
+  }
+  .star-rating li{
+    padding:0px;
+    margin:0px;
+    width:25px;
+    height:25px;
+    /*\*/
+    float: left;
+    /* */
+  }
+  .star-rating li a{
+    display:block;
+    width:25px;
+    height: 25px;
+    line-height:25px;   
+    text-decoration: none;
+    text-indent: -9000px;
+    z-index: 20;
+    position: absolute;
+    padding: 0px;
+    overflow:hidden;
+  }
+  .star-rating li a:hover{
+    background: url(alt_star.gif) left center;
+    z-index: 2;
+    left: 0px;
+    border:none;
+  }
+ 
+  .star-rating a.one-star{
+    left: 0px;
+  }
+  .star-rating a.one-star:hover{
+    width:25px;
+  }
+  .star-rating a.two-stars{
+    left:25px;
+  }
+  .star-rating a.two-stars:hover{
+    width: 50px;
+  }
+  .star-rating a.three-stars{
+    left: 50px;
+  }
+  .star-rating a.three-stars:hover{
+    width: 75px;
+  }
+  .star-rating a.four-stars{
+    left: 75px;
+  } 
+  .star-rating a.four-stars:hover{
+    width: 100px;
+  }
+  .star-rating a.five-stars{
+    left: 100px;
+  }
+  .star-rating a.five-stars:hover{
+    width: 125px;
+  }
+  .star-rating li.current-rating{
+    background: url(alt_star.gif) left center repeat-x;
+    position: absolute;
+    height: 25px;
+    display: block;
+    text-indent: -9000px;
+    z-index: 1;
+  }
+  
+  /* remove halo effect in firefox   */
+  a:active{
+    outline: none;
+  }
+
+  /********************************* End of star rater ************************************/
+
+  #searchBookmarksForm{
+    margin-bottom:0;
+  }
+
+  ul#bookmarksList{
+    list-style: none;
+    margin:0 0 10px 7px;
+    li {
+      font-size:28px;
+      border: 1px solid #eee;
+      padding-bottom:0;
+      padding-left:5px;
+      &:hover{
+        background:#eee;
+      }
+      p {
+        margin:0 0 0 3px;
+        line-height:20px;
+        color:#FF8619;
+      }
+      a.bookmarkName {
+        margin-right:5px;
+      }
+      a.destroyBookmark {
+        float:right;
+        margin-right:5%;
+      }
+    }
+    li.droppable{
+      padding-bottom:7px;
+    }
+  }

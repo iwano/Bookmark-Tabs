@@ -1,3 +1,5 @@
-$('table.table').append("<%= escape_javascript(render @bookmark)%>");
-$('tr#bookmark_<%=@bookmark.id%>').effect('highlight', {color:"#ff0000"}, 6000);
-$("div#bookmarksDiv").prop({ scrollTop: $("div#bookmarksDiv").prop("scrollHeight") });
+$('ul#bookmarksList').append("<%= escape_javascript(render @bookmark)%>");
+$('li#bookmark_<%=@bookmark.id%>').effect('highlight', {color:"#ff0000"}, 6000);
+$("div#rightSplitter").prop({ scrollTop: $("div#rightSplitter").prop("scrollHeight") });
+$("input#addBookmarkField").val('');
+$('#addModal').modal('hide');

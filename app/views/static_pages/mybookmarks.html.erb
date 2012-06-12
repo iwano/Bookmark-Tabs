@@ -2,19 +2,16 @@
 <div style="border: none;" id="mainSplitter">       
   <div style="border: none;" id="rightSplitter">
     <div id="bookmarksDiv">
-  <%= form_for(:bookmark, url: "/bookmarks/create") do |f| %>
-    <%= f.text_field :query, placeholder: "search", class: "search-query" %>
-  <%end%>
-
-  <table class="table"> 
-      <%= render @bookmarks %>
-  </table>
-    </div>
-    <div>
-       <p>Groups</p>
-    <%= form_for(:bookmark, url: "/bookmarks/create") do |f| %>
-      <%= f.text_field :query, placeholder: "search", class: "search-query" %>
-    <%end%>
+      <%= form_for(:bookmark, url: "/bookmarks/create", :html => {:id => "searchBookmarksForm"}) do |f| %>
+        <%= f.text_field :query, placeholder: "search", class: "search-query" %>
+        <a href= '#' rel="tooltip" title="new group" id="newGroupButton">
+          +<i class="icon-folder-close"></i>
+        </a>
+      <%end%>
+      <ul id="bookmarksList">
+          <%= render @groups %>
+          <%= render @bookmarks %>
+      </ul>
     </div>
   </div>
   <div>
@@ -26,12 +23,39 @@
 <div class="modal hide fade" id="myModal">
   <div class="modal-header">
     <button class="close" data-dismiss="modal">×</button>
-    <h3>Modal header</h3>
+    <h3>My Bookmark Tabs</h3>
   </div>
   <div class="modal-body">
-    <p>One fine body…</p>
+    <p>Very helpful information here</p>
   </div>
   <div class="modal-footer">
+    iwano Calderon 2012
     <a href="#" data-dismiss="modal" class="btn">Ok</a>
+  </div>
+</div>
+
+<!--new bookmark modal -->
+<div class="modal hide fade" id="addModal">
+  <div class="modal-header">
+    <button class="close" data-dismiss="modal">×</button>
+    <h3>New Bookmark</h3>
+  </div>
+  <div class="modal-body">
+    <%= form_for(:bookmark, url: "/bookmarks", remote: true, :html => { :class => "formNoformat", :id => "addBookmarkForm"}) do |f| %>
+      <%= f.text_field :url, placeholder: "url", required: true, id:"addBookmarkFieldModal" %>
+      <%= f.text_field :name, placeholder: "name", id:"nameModal" %>
+      <%= f.hidden_field :rating, id:"ratingModal", value: "1" %>
+      <%= f.collection_select :group, Group.find(:all), :id, :name, :prompt => "Group" %><br />
+      <ul class='star-rating'>
+        <li class='current-rating' style='width:26px;'> Currently 3.5/5 Stars.</li>
+        <li><a href='#' title='1 star out of 5' class='one-star'>1</a></li>
+        <li><a href='#' title='2 stars out of 5' class='two-stars'>2</a></li>
+        <li><a href='#' title='3 stars out of 5' class='three-stars'>3</a></li>
+        <li><a href='#' title='4 stars out of 5' class='four-stars'>4</a></li>
+        <li><a href='#' title='5 stars out of 5' class='five-stars'>5</a></li>
+      </ul>
+      <%= f.submit "+ add", class: "btn right btn-small btn-warning removeFormat", id: "addBookmarkModal" %>
+      <a href="#" data-dismiss="modal" class="btn right">cancel</a>
+    <%end%>
   </div>
 </div>

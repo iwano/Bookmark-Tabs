@@ -4,6 +4,7 @@ JustMeAndMyGuitar::Application.routes.draw do
   post "sessions/loginnew"
   resources :bookmarks
   resources :sessions, only: [:destroy]
+  resources :groups, only: [:create, :destroy]
   match '/signout', to: 'sessions#destroy', via: :delete
   resources :users, only: [:create]
 

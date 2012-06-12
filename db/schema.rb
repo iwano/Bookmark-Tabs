@@ -11,15 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120517233015) do
+ActiveRecord::Schema.define(:version => 20120612160858) do
 
   create_table "bookmarks", :force => true do |t|
     t.string   "name"
-    t.integer  "rating",     :default => 0
+    t.integer  "rating",     :default => 1
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
     t.integer  "user_id"
     t.string   "url"
+    t.integer  "group_id",   :default => 0
   end
 
   add_index "bookmarks", ["rating"], :name => "index_bookmarks_on_rating"
@@ -32,13 +33,6 @@ ActiveRecord::Schema.define(:version => 20120517233015) do
   end
 
   add_index "groups", ["name"], :name => "index_groups_on_name", :unique => true
-
-  create_table "relationships", :force => true do |t|
-    t.integer  "bookmark_id"
-    t.integer  "group_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
 
   create_table "users", :force => true do |t|
     t.string   "email"
