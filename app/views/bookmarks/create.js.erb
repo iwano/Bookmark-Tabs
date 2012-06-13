@@ -1,4 +1,6 @@
-$('ul#bookmarksList').append("<%= escape_javascript(render @bookmark)%>");
+$("<%= escape_javascript(render @bookmark)%>").draggable({ 
+    opacity: 0.5,
+    revert: true }).appendTo('ul#bookmarksList');
 $('li#bookmark_<%=@bookmark.id%>').effect('highlight', {color:"#ff0000"}, 6000);
 $("div#rightSplitter").prop({ scrollTop: $("div#rightSplitter").prop("scrollHeight") });
 $("input#addBookmarkField").val('');

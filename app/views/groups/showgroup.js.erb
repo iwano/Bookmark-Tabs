@@ -1,1 +1,6 @@
-$('li#group_<%=@id%>').after("<ul class='groupList' id='group-<%=@id%>'><%= escape_javascript(render @bookmarks)%> </ul>");
+$("<ul class='groupList' id='group-<%=@id%>'><%= escape_javascript(render @bookmarks)%> </ul>").insertAfter('li#group_<%=@id%>');
+<%@bookmarks.each do |bookmark|%>
+	$("li#bookmark_<%=bookmark.id%>").draggable({ 
+    opacity: 0.5,
+    revert: true })
+<%end%>

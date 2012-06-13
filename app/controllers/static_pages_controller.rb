@@ -4,9 +4,10 @@ class StaticPagesController < ApplicationController
   	user = current_user
   	noBookmarks= user.bookmarks.count
   	@username = user.email[0..user.email.index('@')-1]
-  	@bookmarks = user.bookmarks
+    bookmarks = user.bookmarks
+  	@bookmarks = user.bookmarks.where("group_id = ?", 0)
     @groups = user.groups
-  	@randomPage = @bookmarks[rand(noBookmarks) - 1].url unless noBookmarks == 0
+  	@randomPage = bookmarks[rand(noBookmarks) - 1].url unless noBookmarks == 0
   end
 
   def home

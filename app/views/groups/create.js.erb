@@ -1,3 +1,24 @@
-$('ul#bookmarksList').append("<%= escape_javascript(render @group)%>");
+$("<%= escape_javascript(render @group)%>").droppable({
+      accept: '.draggable',
+      over: function(event, ui) {
+           $(this).addClass('droppableHover');
+      },
+      out: function(event, ui) {
+           $(this).removeClass('droppableHover');
+      },
+      drop: function(event, ui){
+        $(this).effect('highlight', {color:"#ff0000"}, 3000);
+        var group = $(this).attr('id');
+        var bookmark = ui.draggable.attr('id');
+        $('li#'+bookmark).remove();
+        group = group.substr(6);
+        bookmark = bookmark.substr(9);
+        $.ajax({
+          type: 'GET',
+          url: '/bookmarks/drop',
+          data: {bookmark: bookmark, group: group}
+        });
+      }
+   }).appendTo('ul#bookmarksList');
 $('li#group_<%=@group.id%>').effect('highlight', {color:"#ff0000"}, 6000);
 $("div#rightSplitter").prop({ scrollTop: $("div#rightSplitter").prop("scrollHeight") });

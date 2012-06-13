@@ -94,9 +94,11 @@ $('li a.destroyBookmark').live('click', function(e) {
            $(this).removeClass('droppableHover');
       },
       drop: function(event, ui){
-        $(this).effect('highlight', {color:"#ff0000"}, 3000);
+        $(this).removeClass('droppableHover');
+        $(this).effect('highlight', {color:"#ff0000"}, 1000);
         var group = $(this).attr('id');
         var bookmark = ui.draggable.attr('id');
+        $('li#'+bookmark).remove();
         group = group.substr(6);
         bookmark = bookmark.substr(9);
         $.ajax({
@@ -107,7 +109,7 @@ $('li a.destroyBookmark').live('click', function(e) {
       }
    });
 
-   $('a.liGroup').click(function(){
+   $('a.liGroup').live('click', function(){
     var id = $(this).closest('li').attr('id');
     if ($(this).children().hasClass('icon-folder-close')){
       id = id.substr(6);
