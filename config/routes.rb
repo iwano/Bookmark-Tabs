@@ -4,6 +4,7 @@ JustMeAndMyGuitar::Application.routes.draw do
   post "sessions/loginnew"
   resources :bookmarks do
     get :drop, :on => :collection
+    get :random, :on => :collection
   end
   resources :sessions, only: [:destroy]
   resources :groups, only: [:create, :destroy]

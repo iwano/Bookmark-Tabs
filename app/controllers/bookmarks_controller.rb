@@ -19,4 +19,11 @@ class BookmarksController < ApplicationController
  	Bookmark.find(params[:bookmark]).update_attributes(group_id: params[:group])
  	render :nothing => true
  end
+
+ def random
+ 	@randomPage = random_page
+ 	respond_to do |format|  
+      format.js 
+  end
+ end
 end

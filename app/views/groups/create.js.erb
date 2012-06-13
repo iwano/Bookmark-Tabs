@@ -7,7 +7,8 @@ $("<%= escape_javascript(render @group)%>").droppable({
            $(this).removeClass('droppableHover');
       },
       drop: function(event, ui){
-        $(this).effect('highlight', {color:"#ff0000"}, 3000);
+        $(this).removeClass('droppableHover');
+        $(this).effect('highlight', {color:"#ff0000"}, 1000);
         var group = $(this).attr('id');
         var bookmark = ui.draggable.attr('id');
         $('li#'+bookmark).remove();
@@ -16,8 +17,12 @@ $("<%= escape_javascript(render @group)%>").droppable({
         $.ajax({
           type: 'GET',
           url: '/bookmarks/drop',
-          data: {bookmark: bookmark, group: group}
-        });
+          data: {bookmark: bookmark, group: group},
+          success : function(){
+            var g = 'li#group_' + group + ' a.liGroup'
+            $(g).click().click(); 
+          }
+        });   
       }
    }).appendTo('ul#bookmarksList');
 $('li#group_<%=@group.id%>').effect('highlight', {color:"#ff0000"}, 6000);

@@ -6,4 +6,10 @@ module BookmarksHelper
 		end
 		res
 	end
+
+	def random_page
+		bookmarks = current_user.bookmarks
+		noBookmarks = current_user.bookmarks.count
+		bookmarks[rand(noBookmarks) - 1].url unless noBookmarks == 0
+	end
 end

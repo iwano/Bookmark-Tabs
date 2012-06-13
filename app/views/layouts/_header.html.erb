@@ -2,6 +2,7 @@
   <% if signed_in? %>
       <input type="text" placeholder="url" id="addBookmarkField">
       <a class="btn btn-small btn-warning removeFormat" id="addBookmark">+ add</a>
+      <a href="<%=random_page%>" class="btn btn-inverse removeFormat" id="randomPageBtn" target="iframe">random</a>
 
     <%=hidden_field 'email', @username, id:"username", value: @username%>
     <nav>

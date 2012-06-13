@@ -104,8 +104,12 @@ $('li a.destroyBookmark').live('click', function(e) {
         $.ajax({
           type: 'GET',
           url: '/bookmarks/drop',
-          data: {bookmark: bookmark, group: group}
-        });
+          data: {bookmark: bookmark, group: group},
+          success : function(){
+            var g = 'li#group_' + group + ' a.liGroup'
+            $(g).click().click(); 
+          }
+        });   
       }
    });
 
@@ -126,6 +130,13 @@ $('li a.destroyBookmark').live('click', function(e) {
       $(container).remove();
       $(this).children().removeClass().addClass('icon-folder-close');
     }
+   });
+
+   $('a#randomPageBtn').click(function(){
+      $.ajax({
+        type: 'GET',
+        url: '/bookmarks/random'
+      });
    });
 });
 
