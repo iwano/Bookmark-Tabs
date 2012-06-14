@@ -8,6 +8,7 @@ JustMeAndMyGuitar::Application.routes.draw do
   end
   resources :sessions, only: [:destroy]
   resources :groups, only: [:create, :destroy]
+  get "groups/name"
   get "groups/showgroup"
   match '/signout', to: 'sessions#destroy', via: :delete
   resources :users, only: [:create]

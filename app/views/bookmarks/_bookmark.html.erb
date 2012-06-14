@@ -1,6 +1,6 @@
 <li id='bookmark_<%="#{bookmark.id}"%>' class='draggable'>
     <%=link_to "x", bookmark_path(bookmark), class: "destroyBookmark"%>
-    <%if bookmark.name != nil%>
+    <%if bookmark.name != ''%>
     	<%=link_to bookmark.name, bookmark.url, :target => "iframe", class: "bookmarkName"%>
     <%else%>
     	<%=link_to bookmark.url, bookmark.url, :target => "iframe", class: "bookmarkName"%>

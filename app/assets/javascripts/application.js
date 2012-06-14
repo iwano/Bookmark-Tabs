@@ -171,8 +171,15 @@ $('li a.destroyBookmark').live('click', function(e) {
 
    $('li input[type="text"]').live('blur', function() {
      if ($.trim(this.value) != ''){
-       // $(this).prev().html('<i class="icon-folder-close"></i> ' + this.value);
-     }
+       $(this).prev().html('<i class="icon-folder-open"></i> ' + this.value);
+       id = $(this).parent().attr('id');
+       id = id.substr(6);
+       $.ajax({
+         type: 'GET',
+         url: '/groups/name',
+         data: {name: this.value, id: id}
+       });
+      }
      $(this).hide();
      $(this).prev().show();
    });
@@ -180,7 +187,14 @@ $('li a.destroyBookmark').live('click', function(e) {
    $('li input[type="text"]').live('keypress', function(event) {
       if (event.keyCode == '13') {
         if ($.trim(this.value) != ''){
-         // $(this).prev().html('<i class="icon-folder-close"></i> ' + this.value);
+         $(this).prev().html('<i class="icon-folder-open"></i> ' + this.value);
+         id = $(this).parent().attr('id');
+         id = id.substr(6);
+         $.ajax({
+          type: 'GET',
+          url: '/groups/name',
+            data: {name: this.value, id: id}
+         });
        }
        $(this).hide();
        $(this).prev().show();

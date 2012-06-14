@@ -24,4 +24,9 @@ class GroupsController < ApplicationController
     format.js 
   end
  end
+
+ def name
+  Group.find(params[:id]).update_attributes(name: params[:name])
+  render :nothing => true
+ end
 end
