@@ -85,6 +85,34 @@ $('li a.destroyBookmark').live('click', function(e) {
     opacity: 0.5,
     revert: true });
 
+   $('form#searchBookmarksForm').droppable({
+      accept: '.draggable',
+      over: function(event, ui) {
+           $(this).addClass('droppableHover');
+      },
+      out: function(event, ui) {
+           $(this).removeClass('droppableHover');
+      },
+      drop: function(event, ui){
+        $(this).removeClass('droppableHover');
+        $(this).effect('highlight', {color:"#ff0000"}, 1000);
+        var bookmark = ui.draggable.attr('id');
+        var tab = ui.draggable.css({'opacity':'1', 'position':'relative', 'left':'0px', 'top':'0px'});
+        $('li#'+bookmark).remove();
+        bookmark = bookmark.substr(9);
+        $.ajax({
+          type: 'GET',
+          url: '/bookmarks/drop',
+          data: {bookmark: bookmark, group: 0},
+          success : function(){
+            $(tab).draggable({ 
+        opacity: 0.5,
+        revert: true }).appendTo('ul#bookmarksList'); 
+          }
+        });   
+      }
+   });
+
    $("li.droppable").droppable({
       accept: '.draggable',
       over: function(event, ui) {
@@ -107,7 +135,9 @@ $('li a.destroyBookmark').live('click', function(e) {
           data: {bookmark: bookmark, group: group},
           success : function(){
             var g = 'li#group_' + group + ' a.liGroup'
-            $(g).click().click(); 
+            if ($(g).children().hasClass('icon-folder-open')){
+              $(g).click().click();
+            }
           }
         });   
       }
@@ -138,5 +168,23 @@ $('li a.destroyBookmark').live('click', function(e) {
         url: '/bookmarks/random'
       });
    });
+
+   $('li input[type="text"]').live('blur', function() {
+     if ($.trim(this.value) != ''){
+       // $(this).prev().html('<i class="icon-folder-close"></i> ' + this.value);
+     }
+     $(this).hide();
+     $(this).prev().show();
+   });
+
+   $('li input[type="text"]').live('keypress', function(event) {
+      if (event.keyCode == '13') {
+        if ($.trim(this.value) != ''){
+         // $(this).prev().html('<i class="icon-folder-close"></i> ' + this.value);
+       }
+       $(this).hide();
+       $(this).prev().show();
+      }
+    });
 });
 

@@ -23,7 +23,7 @@ class BookmarksController < ApplicationController
  def random
  	@randomPage = random_page
  	respond_to do |format|  
-      format.js 
+    format.js 
   end
  end
 end

@@ -25,5 +25,7 @@ $("<%= escape_javascript(render @group)%>").droppable({
         });   
       }
    }).appendTo('ul#bookmarksList');
-$('li#group_<%=@group.id%>').effect('highlight', {color:"#ff0000"}, 6000);
+$('li#group_<%=@group.id%>').effect('highlight', {color:"#ff0000"}, 3000);
 $("div#rightSplitter").prop({ scrollTop: $("div#rightSplitter").prop("scrollHeight") });
+$('li#group_<%=@group.id%> a.liGroup').hide();
+$('li#group_<%=@group.id%> input').show().select();
