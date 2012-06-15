@@ -14,4 +14,6 @@ class Group < ActiveRecord::Base
 
   belongs_to :user
   has_many :bookmarks
+
+  default_scope order: 'groups.name ASC'
 end

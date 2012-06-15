@@ -1,7 +1,6 @@
 class GroupsController < ApplicationController
   def create
-  	id = Group.count + 1
-  	name = "Group" + id.to_s
+  	name = group_name_generator
   	@group = current_user.groups.build(name: name)
    	@group.save
   	respond_to do |format|  

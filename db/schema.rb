@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120612160858) do
+ActiveRecord::Schema.define(:version => 20120615003359) do
 
   create_table "bookmarks", :force => true do |t|
     t.string   "name"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(:version => 20120612160858) do
     t.integer  "user_id"
   end
 
-  add_index "groups", ["name"], :name => "index_groups_on_name", :unique => true
+  add_index "groups", ["name"], :name => "index_groups_on_name"
 
   create_table "users", :force => true do |t|
     t.string   "email"

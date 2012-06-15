@@ -2,7 +2,11 @@
   <% if signed_in? %>
       <input type="text" placeholder="url" id="addBookmarkField">
       <a class="btn btn-small btn-warning removeFormat" id="addBookmark">+ add</a>
-      <a href="<%=random_page%>" class="btn btn-inverse removeFormat" id="randomPageBtn" target="iframe">random</a>
+      <% if current_user.bookmarks.count != 0 %>
+        <a href="<%=random_page%>" class="btn btn-inverse removeFormat" id="randomPageBtn" target="iframe" >random</a>
+      <%else%>
+        <a href="#" class="btn btn-inverse removeFormat" id="randomPageBtn" target="iframe" display="none">random</a>
+      <%end%>
 
     <%=hidden_field 'email', @username, id:"username", value: @username%>
     <nav>
