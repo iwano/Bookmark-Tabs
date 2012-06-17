@@ -365,11 +365,18 @@ div.modal-body{
     }
     li.droppable{
       padding-bottom:7px;
+      a.liGroup{
+        color:#005782;
+      }
     }
   }
 
   .droppableHover{
     background:#AADCFC;
+  }
+
+  .droppableHoverSearchForm{
+    background:#67E894;
   }
 
   ul.groupList{

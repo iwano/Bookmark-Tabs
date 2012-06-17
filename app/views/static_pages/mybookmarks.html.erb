@@ -1,9 +1,9 @@
-<% provide(:title, 'My Bookmark Tabs') %>
+<% provide(:title) %>
 <div style="border: none;" id="mainSplitter">       
   <div style="border: none;" id="rightSplitter">
     <div id="bookmarksDiv">
-      <%= form_for(:bookmark, url: "/bookmarks/create", :html => {:id => "searchBookmarksForm"}) do |f| %>
-        <%= f.text_field :query, placeholder: "search", class: "search-query" %>
+      <%= form_for(:bookmark, url: "#", :html => {:id => "searchBookmarksForm"}) do |f| %>
+        <%= f.text_field :query, placeholder: "search", class: "search-query", id: "searchField", autocomplete: "off", :data=>{:provide=>"typeahead", :items=>"8", :source=> @allBookmarks.map {|i| i.name }} %>
         <a href= '#' rel="tooltip" title="new group" id="newGroupButton">
           +<i class="icon-folder-close"></i>
         </a>

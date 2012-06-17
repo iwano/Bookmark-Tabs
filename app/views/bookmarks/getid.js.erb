@@ -1,0 +1,20 @@
+var gid = <%=@id.group_id%>
+if ( gid != 0){
+	var group = $("li#group_" + gid + ' a.liGroup i');
+	if (group.hasClass("icon-folder-close")){
+		group.click();
+	}
+}
+if ($("li#bookmark_<%=@id.id%>").length == 0){
+	setTimeout(function(){
+	element = $("li#bookmark_<%=@id.id%>");
+	element.effect('highlight', {color:"#FF8619"}, 6000);
+	var position = element.position();
+	$("div#rightSplitter").prop({ scrollTop: position.top });
+	},150);
+}else{
+	element = $("li#bookmark_<%=@id.id%>");
+	element.effect('highlight', {color:"#FF8619"}, 6000);
+	var position = element.position();
+	$("div#rightSplitter").prop({ scrollTop: position.top });
+}

@@ -5,3 +5,6 @@ $('li#bookmark_<%=@bookmark.id%>').effect('highlight', {color:"#ff0000"}, 6000);
 $("div#rightSplitter").prop({ scrollTop: $("div#rightSplitter").prop("scrollHeight") });
 $("input#addBookmarkField").val('');
 $('#addModal').modal('hide');
+var source = $('#searchField').data('source');
+source.push("<%= @bookmark.name%>");
+$('#searchField').data('source', source)

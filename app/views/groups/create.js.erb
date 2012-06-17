@@ -21,6 +21,7 @@ $("<%= escape_javascript(render @group)%>").droppable({
           success : function(){
             var g = 'li#group_' + group + ' a.liGroup'
             if ($(g).children().hasClass('icon-folder-open')){
+              $(g).parent().next().remove();
               $(g).click().click();
             }
           }
@@ -28,6 +29,8 @@ $("<%= escape_javascript(render @group)%>").droppable({
       }
    }).appendTo('div#groupsDiv');
 $('li#group_<%=@group.id%>').effect('highlight', {color:"#ff0000"}, 3000);
-$("div#rightSplitter").prop({ scrollTop: $("div#rightSplitter").prop("scrollHeight") });
+// $("div#rightSplitter").prop({ scrollTop: $("div#rightSplitter").prop("scrollHeight") });
+var position = $('li#group_<%=@group.id%>').position();
+$("div#rightSplitter").prop({ scrollTop: position.top });
 $('li#group_<%=@group.id%> a.liGroup').hide();
 $('li#group_<%=@group.id%> input').show().select();

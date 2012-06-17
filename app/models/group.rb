@@ -13,7 +13,7 @@ class Group < ActiveRecord::Base
   attr_accessible :name, :user_id
 
   belongs_to :user
-  has_many :bookmarks
+  has_many :bookmarks, dependent: :destroy
 
   default_scope order: 'groups.name ASC'
 end

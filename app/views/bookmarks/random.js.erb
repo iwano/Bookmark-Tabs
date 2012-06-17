@@ -1,1 +1,5 @@
-$('a#randomPageBtn').attr('href', '<%=@randomPage%>');
+<%if @randomPage == nil%>
+	alert('You dont have any bookmarks!');
+<%else%>
+	$('iframe').attr('src', '<%=@randomPage%>');
+<%end%>

@@ -4,6 +4,7 @@ class StaticPagesController < ApplicationController
   	user = current_user
   	@username = user.email[0..user.email.index('@')-1]
   	@bookmarks = user.bookmarks.where("group_id = ?", 0)
+    @allBookmarks = user.bookmarks
     @groups = user.groups
   end
 

@@ -26,4 +26,11 @@ class BookmarksController < ApplicationController
     format.js 
   end
  end
+
+ def getid
+  @id = current_user.bookmarks.find_by_name(params[:name], :select=> "id, group_id")
+  respond_to do |format|  
+    format.js 
+  end
+ end
 end

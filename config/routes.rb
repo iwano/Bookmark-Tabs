@@ -5,6 +5,7 @@ JustMeAndMyGuitar::Application.routes.draw do
   resources :bookmarks do
     get :drop, :on => :collection
     get :random, :on => :collection
+    get :getid, :on => :collection
   end
   resources :sessions, only: [:destroy]
   resources :groups, only: [:create, :destroy]

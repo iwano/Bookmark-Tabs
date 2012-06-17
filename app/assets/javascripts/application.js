@@ -20,6 +20,10 @@ $('li a.destroyBookmark').live('click', function(e) {
   $.post(this.href, { _method: 'delete' }, null, "script");
   $(this).closest("li").fadeOut(600, function(){
   $(this).closest("li").remove();
+  var source = $('#searchField').data('source');
+  var item = $(this).text();
+  source.splice($.inArray(item, source),1);
+  $('#searchField').data('source', source)
   });
   return false; 
 });
@@ -88,13 +92,13 @@ $('li a.destroyBookmark').live('click', function(e) {
    $('form#searchBookmarksForm').droppable({
       accept: '.draggable',
       over: function(event, ui) {
-           $(this).addClass('droppableHover');
+           $(this).addClass('droppableHoverSearchForm');
       },
       out: function(event, ui) {
-           $(this).removeClass('droppableHover');
+           $(this).removeClass('droppableHoverSearchForm');
       },
       drop: function(event, ui){
-        $(this).removeClass('droppableHover');
+        $(this).removeClass('droppableHoverSearchForm');
         $(this).effect('highlight', {color:"#ff0000"}, 1000);
         var bookmark = ui.draggable.attr('id');
         var tab = ui.draggable.css({'opacity':'1', 'position':'relative', 'left':'0px', 'top':'0px'});
@@ -136,6 +140,7 @@ $('li a.destroyBookmark').live('click', function(e) {
           success : function(){
             var g = 'li#group_' + group + ' a.liGroup'
             if ($(g).children().hasClass('icon-folder-open')){
+              $(g).parent().next().remove();
               $(g).click().click();
             }
           }
@@ -145,24 +150,28 @@ $('li a.destroyBookmark').live('click', function(e) {
 
    $('a.liGroup').live('click', function(){
     var id = $(this).closest('li').attr('id');
+    id = id.substr(6);
     if ($(this).children().hasClass('icon-folder-close')){
-      id = id.substr(6);
-      $.ajax({
-          type: 'GET',
-          url: '/groups/showgroup',
-          data: {id: id}
-      });
-      $(this).children().removeClass().addClass('icon-folder-open');
+      if ($(this).parent().next().is('ul')){
+        container = 'ul#group-' + id;
+        $(container).show();
+      }else{
+        $.ajax({
+            type: 'GET',
+            url: '/groups/showgroup',
+            data: {id: id}
+        });
+    }$(this).children().removeClass().addClass('icon-folder-open');
     }
     else {
-      id = id.substr(6);
       container = 'ul#group-' + id;
-      $(container).remove();
+      $(container).hide();
       $(this).children().removeClass().addClass('icon-folder-close');
     }
    });
 
-   $('a#randomPageBtn').click(function(){
+   $('a#randomPageBtn').click(function(event){
+      event.preventDefault();
       $.ajax({
         type: 'GET',
         url: '/bookmarks/random'
@@ -170,7 +179,9 @@ $('li a.destroyBookmark').live('click', function(e) {
    });
 
    $('li input[type="text"]').live('blur', function() {
-     if ($.trim(this.value) != ''){
+    var name =  $(this).prev().text().replace(/\s/g, "");
+     if ($.trim(this.value) != '' && $.trim(this.value) != name){
+      alert($(this).prev().text());
        $(this).prev().html('<i class="icon-folder-open"></i> ' + this.value);
        id = $(this).parent().attr('id');
        id = id.substr(6);
@@ -186,7 +197,8 @@ $('li a.destroyBookmark').live('click', function(e) {
 
    $('li input[type="text"]').live('keypress', function(event) {
       if (event.keyCode == '13') {
-        if ($.trim(this.value) != ''){
+        var name =  $(this).prev().text().replace(/\s/g, "");
+        if ($.trim(this.value) != '' && $.trim(this.value) != name){
          $(this).prev().html('<i class="icon-folder-open"></i> ' + this.value);
          id = $(this).parent().attr('id');
          id = id.substr(6);
@@ -198,6 +210,18 @@ $('li a.destroyBookmark').live('click', function(e) {
        }
        $(this).hide();
        $(this).prev().show();
+      }
+    });
+
+   $('#searchField').keypress(function(event) {
+      if (event.keyCode == '13') {
+        event.preventDefault();
+        var name = $(this).val();
+        $.ajax({
+          type: 'GET',
+          url: '/bookmarks/getid',
+          data: {name: name}
+        });
       }
     });
 });
