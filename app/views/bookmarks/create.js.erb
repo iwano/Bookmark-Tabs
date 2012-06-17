@@ -1,8 +1,21 @@
-$("<%= escape_javascript(render @bookmark)%>").draggable({ 
+var element = $("<%= escape_javascript(render @bookmark)%>").draggable({ 
     opacity: 0.5,
-    revert: true }).appendTo('ul#bookmarksList');
+    revert: true });
+var name = '<%= @bookmark.name%>'
+var firstafteritem = $("ul#bookmarksList").children().filter(function () {
+    return ($(this).children().eq(1).text() > name)
+} ).eq(0);
+
+if (firstafteritem.length > 0) {
+	firstafteritem.before(element);
+}
+else {
+	$("ul#bookmarksList").append(element);
+}
+
 $('li#bookmark_<%=@bookmark.id%>').effect('highlight', {color:"#ff0000"}, 6000);
-$("div#rightSplitter").prop({ scrollTop: $("div#rightSplitter").prop("scrollHeight") });
+var position = $('li#bookmark_<%=@bookmark.id%>').position();
+$("div#rightSplitter").prop({ scrollTop: position.top - 200 });
 $("input#addBookmarkField").val('');
 $('#addModal').modal('hide');
 var source = $('#searchField').data('source');

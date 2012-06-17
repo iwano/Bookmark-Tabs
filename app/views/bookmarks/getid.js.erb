@@ -10,11 +10,11 @@ if ($("li#bookmark_<%=@id.id%>").length == 0){
 	element = $("li#bookmark_<%=@id.id%>");
 	element.effect('highlight', {color:"#FF8619"}, 6000);
 	var position = element.position();
-	$("div#rightSplitter").prop({ scrollTop: position.top });
-	},150);
+	$("div#rightSplitter").prop({ scrollTop: position.top - 200 });
+	},300);
 }else{
 	element = $("li#bookmark_<%=@id.id%>");
 	element.effect('highlight', {color:"#FF8619"}, 6000);
 	var position = element.position();
-	$("div#rightSplitter").prop({ scrollTop: position.top });
+	$("div#rightSplitter").prop({ scrollTop: position.top - 200 });
 }

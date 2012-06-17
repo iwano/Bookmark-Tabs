@@ -224,5 +224,20 @@ $('li a.destroyBookmark').live('click', function(e) {
         });
       }
     });
+
+   $('a#demo').click(function(){
+      var element = "<li>pito</li>";
+      var name = "farabela";
+      var firstafteritem = $("ul#bookmarksList").children().filter(function () {
+          return ($(this).children().eq(1).text() > name)
+      } ).eq(0);
+      alert(firstafteritem.html());
+      if (firstafteritem.length > 0) {
+        firstafteritem.before(element);
+      }
+      else {
+        $("#projectList").append(element);
+      }
+   });
 });
 

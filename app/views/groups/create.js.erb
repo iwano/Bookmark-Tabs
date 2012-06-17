@@ -31,6 +31,6 @@ $("<%= escape_javascript(render @group)%>").droppable({
 $('li#group_<%=@group.id%>').effect('highlight', {color:"#ff0000"}, 3000);
 // $("div#rightSplitter").prop({ scrollTop: $("div#rightSplitter").prop("scrollHeight") });
 var position = $('li#group_<%=@group.id%>').position();
-$("div#rightSplitter").prop({ scrollTop: position.top });
+$("div#rightSplitter").prop({ scrollTop: position.top - 200 });
 $('li#group_<%=@group.id%> a.liGroup').hide();
 $('li#group_<%=@group.id%> input').show().select();
