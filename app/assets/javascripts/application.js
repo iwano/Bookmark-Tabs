@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
+
 $(function(){
 $('li a.destroyBookmark').live('click', function(e) {
   e.preventDefault();
@@ -101,6 +102,7 @@ $('li a.destroyBookmark').live('click', function(e) {
         $(this).removeClass('droppableHoverSearchForm');
         $(this).effect('highlight', {color:"#ff0000"}, 1000);
         var bookmark = ui.draggable.attr('id');
+        var name = ui.draggable.children().eq(1).text();
         var tab = ui.draggable.css({'opacity':'1', 'position':'relative', 'left':'0px', 'top':'0px'});
         $('li#'+bookmark).remove();
         bookmark = bookmark.substr(9);
@@ -109,9 +111,21 @@ $('li a.destroyBookmark').live('click', function(e) {
           url: '/bookmarks/drop',
           data: {bookmark: bookmark, group: 0},
           success : function(){
-            $(tab).draggable({ 
-        opacity: 0.5,
-        revert: true }).appendTo('ul#bookmarksList'); 
+            var element = $(tab).draggable({ 
+              opacity: 0.5,
+              revert: true });
+            var firstafteritem = $("ul#bookmarksList").children().filter(function () {
+                return ($(this).children().eq(1).text() > name)
+            } ).eq(0);
+            if (firstafteritem.length > 0) {
+              firstafteritem.before(element);
+            }
+            else {
+              $("ul#bookmarksList").append(element);
+            }
+            // var position = tab.position();
+            // $("div#rightSplitter").prop({ scrollTop: position.top - 200 });
+            // tab.effect('highlight', {color:"#ff0000"}, 2000);
           }
         });   
       }
@@ -130,6 +144,8 @@ $('li a.destroyBookmark').live('click', function(e) {
         $(this).effect('highlight', {color:"#ff0000"}, 1000);
         var group = $(this).attr('id');
         var bookmark = ui.draggable.attr('id');
+        var name = ui.draggable.children().eq(1).text();
+        var tab = ui.draggable.css({'opacity':'1', 'position':'relative', 'left':'0px', 'top':'0px'});
         $('li#'+bookmark).remove();
         group = group.substr(6);
         bookmark = bookmark.substr(9);
@@ -138,11 +154,22 @@ $('li a.destroyBookmark').live('click', function(e) {
           url: '/bookmarks/drop',
           data: {bookmark: bookmark, group: group},
           success : function(){
-            var g = 'li#group_' + group + ' a.liGroup'
-            if ($(g).children().hasClass('icon-folder-open')){
-              $(g).parent().next().remove();
-              $(g).click().click();
+            var element = $(tab).draggable({ 
+              opacity: 0.5,
+              revert: true });
+            var g = $('ul#group-' + group);
+            var firstafteritem = g.children().filter(function () {
+                return ($(this).children().eq(1).text() > name)
+            } ).eq(0);
+            if (firstafteritem.length > 0) {
+              firstafteritem.before(element);
             }
+            else {
+              g.append(element);
+            }
+            // var position = tab.position();
+            // $("div#rightSplitter").prop({ scrollTop: position.top - 200 });
+            // tab.effect('highlight', {color:"#ff0000"}, 2000);
           }
         });   
       }
@@ -180,36 +207,53 @@ $('li a.destroyBookmark').live('click', function(e) {
 
    $('li input[type="text"]').live('blur', function() {
     var name =  $(this).prev().text().replace(/\s/g, "");
+    var id = $(this).parent().attr('id');
      if ($.trim(this.value) != '' && $.trim(this.value) != name){
-      alert($(this).prev().text());
-       $(this).prev().html('<i class="icon-folder-open"></i> ' + this.value);
-       id = $(this).parent().attr('id');
+       $(this).prev().html('<i class="icon-folder-close"></i> ' + this.value);
        id = id.substr(6);
+       name = this.value;
        $.ajax({
          type: 'GET',
          url: '/groups/name',
-         data: {name: this.value, id: id}
+         data: {name: name, id: id}
        });
       }
      $(this).hide();
      $(this).prev().show();
+     correctGroupsPosition(id, name);
    });
+
+   function correctGroupsPosition(id, gname){
+      var element = $('li#group_' + id);
+      var name = gname;
+      var firstafteritem = $("div#groupsDiv").children().filter(function () {
+          return ($(this).children().eq(1).text().replace(/\s/g, "") > name)
+      } ).eq(0);
+      if (firstafteritem.length > 0) {
+        firstafteritem.before(element);
+      }
+      else {
+        $("div#groupsDiv").append(element);
+      }
+   }
 
    $('li input[type="text"]').live('keypress', function(event) {
       if (event.keyCode == '13') {
         var name =  $(this).prev().text().replace(/\s/g, "");
+        var id = $(this).parent().attr('id');
         if ($.trim(this.value) != '' && $.trim(this.value) != name){
-         $(this).prev().html('<i class="icon-folder-open"></i> ' + this.value);
-         id = $(this).parent().attr('id');
+         $(this).prev().html('<i class="icon-folder-close"></i> ' + this.value);
          id = id.substr(6);
+         name = this.value;
          $.ajax({
           type: 'GET',
           url: '/groups/name',
-            data: {name: this.value, id: id}
+            data: {name: name, id: id}
          });
        }
        $(this).hide();
        $(this).prev().show();
+       correctGroupsPosition(id, name);
       }
     });
 
@@ -226,7 +270,7 @@ $('li a.destroyBookmark').live('click', function(e) {
     });
 
    $('a#demo').click(function(){
-      var element = "<li>pito</li>";
+      var element = "<li>pppppp</li>";
       var name = "farabela";
       var firstafteritem = $("ul#bookmarksList").children().filter(function () {
           return ($(this).children().eq(1).text() > name)
